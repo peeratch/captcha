@@ -6,11 +6,16 @@ import (
 	"fmt"
 )
 
-var mathOperator = map[string]string{
-	"0": "+",
-	"1": "-",
-	"2": "*",
-}
+var (
+	ErrUnsupportMathOperator = errors.New("unsupport math operator")
+	ErrUnsupportOperator     = errors.New("unsupport operator")
+
+	mathOperator = map[string]string{
+		"0": "+",
+		"1": "-",
+		"2": "*",
+	}
+)
 
 const (
 	Format string = "%s %s %s"
@@ -37,10 +42,10 @@ func NewCaptcha(right, left, mathOperator, operator string) *Captcha {
 
 func (c *Captcha) Validate() error {
 	if _, ok := mathOperator[c.MathOperator]; !ok {
-		return errors.New("unsupport math operator")
+		return ErrUnsupportMathOperator
 	}
 	if c.Operator != LeftOperator && c.Operator != RightOperator {
-		return errors.New("unsupport operator")
+		return ErrUnsupportOperator
 	}
 	return nil
 }
@@ -52,14 +57,14 @@ func (c *Captcha) Process() string {
 	return c.doRight()
 }
 
-func (c *Captcha) toMathOperatorSymbol() string {
+func (c *Captcha) mathOperatorSymbol() string {
 	return mathOperator[c.MathOperator]
 }
 
 func (c *Captcha) doLeft() string {
-	return fmt.Sprintf(Format, c.Left, c.toMathOperatorSymbol(), strcon.Ntot(c.Right))
+	return fmt.Sprintf(Format, c.Left, c.mathOperatorSymbol(), strcon.Ntot(c.Right))
 }
 
 func (c *Captcha) doRight() string {
-	return fmt.Sprintf(Format, strcon.Ntot(c.Left), c.toMathOperatorSymbol(), c.Right)
+	return fmt.Sprintf(Format, strcon.Ntot(c.Left), c.mathOperatorSymbol(), c.Right)
 }

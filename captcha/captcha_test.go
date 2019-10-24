@@ -1,13 +1,12 @@
 package captcha
 
 import (
-	"errors"
 	"testing"
 )
 
 func TestCaptcha_Validator(t *testing.T) {
-	t.Run("captcha validate should return error not support operator", func(t *testing.T) {
-		expecrted := errors.New("unsupport operator")
+	t.Run("captcha validate should return error unsupport operator", func(t *testing.T) {
+		expecrted := ErrUnsupportOperator
 		c := Captcha{
 			Right:        "1",
 			Left:         "1",
@@ -20,8 +19,8 @@ func TestCaptcha_Validator(t *testing.T) {
 		}
 	})
 
-	t.Run("captcha validate should return error not support math operator", func(t *testing.T) {
-		expecrted := errors.New("unsupport math operator")
+	t.Run("captcha validate should return error unsupport math operator", func(t *testing.T) {
+		expecrted := ErrUnsupportMathOperator
 		c := Captcha{
 			Right:        "1",
 			Left:         "1",
@@ -57,7 +56,7 @@ func TestCaptcha_ConvertString_To_MathSymbol(t *testing.T) {
 	}
 	for index := 0; index < len(actual); index++ {
 		t.Run("convert string to math symbol should return correct result", func(t *testing.T) {
-			if expected[index] != actual[index].toMathOperatorSymbol() {
+			if expected[index] != actual[index].mathOperatorSymbol() {
 				t.Errorf("expected: %s should equal actual but got %s", expected[index], actual[index])
 			}
 		})
