@@ -56,7 +56,7 @@ func TestCaptcha_ConvertString_To_MathSymbol(t *testing.T) {
 		Captcha{MathOperator: "2"},
 	}
 	for index := 0; index < len(actual); index++ {
-		t.Run("convert string to math symbol shold return correct result", func(t *testing.T) {
+		t.Run("convert string to math symbol should return correct result", func(t *testing.T) {
 			if expected[index] != actual[index].toMathOperatorSymbol() {
 				t.Errorf("expected: %s should equal actual but got %s", expected[index], actual[index])
 			}
