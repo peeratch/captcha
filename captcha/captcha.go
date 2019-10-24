@@ -26,8 +26,8 @@ type Captcha struct {
 	Operator     string
 }
 
-func NewCaptcha(right, left, mathOperator, operator string) Captcha {
-	return Captcha{
+func NewCaptcha(right, left, mathOperator, operator string) *Captcha {
+	return &Captcha{
 		right,
 		left,
 		mathOperator,
