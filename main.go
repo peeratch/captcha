@@ -11,5 +11,5 @@ func main() {
 	if err := c.Validate(); err != nil {
 		log.Fatal(err.Error())
 	}
-	fmt.Print(c.Process())
+	fmt.Print(c.GenerateCaptcha())
 }

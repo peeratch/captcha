@@ -50,7 +50,7 @@ func (c *Captcha) Validate() error {
 	return nil
 }
 
-func (c *Captcha) Process() string {
+func (c *Captcha) GenerateCaptcha() string {
 	if c.Operator == LeftOperator {
 		return c.doLeft()
 	}

@@ -69,7 +69,7 @@ func TestCaptcha_ShouldDoLeft_Operation(t *testing.T) {
 	if err := c.Validate(); err != nil {
 		t.Errorf("captcha process should not got error but got %s", err)
 	}
-	acutal := c.Process()
+	acutal := c.GenerateCaptcha()
 	if expected != acutal {
 		t.Errorf("captcha process should return %s but got %s", expected, acutal)
 	}
@@ -82,7 +82,7 @@ func TestCaptcha_ShouldDoRight_Operation(t *testing.T) {
 	if err := c.Validate(); err != nil {
 		t.Errorf("captcha process should not got error but got %s", err)
 	}
-	acutal := c.Process()
+	acutal := c.GenerateCaptcha()
 	if expected != acutal {
 		t.Errorf("captcha process should return %s but got %s", expected, acutal)
 	}
