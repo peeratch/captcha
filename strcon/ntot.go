@@ -1,17 +1,16 @@
 package strcon
 
-var numbers = map[string]string{
-	"1": "One",
-	"2": "Two",
-	"3": "Three",
-	"4": "Four",
-	"5": "Five",
-	"6": "Six",
-	"7": "Seven",
-	"8": "Eight",
-	"9": "Nine",
-}
+import (
+	"strconv"
+
+	"github.com/divan/num2words"
+)
 
 func Ntot(number string) string {
-	return numbers[number]
+	return num2words.Convert(atoi(number))
+}
+
+func atoi(number string) int {
+	i, _ := strconv.Atoi(number)
+	return i
 }
