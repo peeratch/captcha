@@ -6,7 +6,7 @@ import (
 
 func TestCaptcha_Validator(t *testing.T) {
 	t.Run("captcha validate should return error unsupport operator", func(t *testing.T) {
-		expecrted := ErrUnsupportOperator
+		expecrted := ErrUnsupportFormatOperator
 		c := Captcha{
 			Right:        1,
 			Left:         1,

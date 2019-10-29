@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	ErrUnsupportMathOperator = errors.New("unsupport math operator")
-	ErrUnsupportOperator     = errors.New("unsupport operator")
+	ErrUnsupportMathOperator   = errors.New("unsupport math operator")
+	ErrUnsupportFormatOperator = errors.New("unsupport format operator")
 
 	mathOperator = map[int]string{
 		0: "+",
@@ -45,7 +45,7 @@ func (c *Captcha) Validate() error {
 		return ErrUnsupportMathOperator
 	}
 	if c.Format != LeftFormatOperator && c.Format != RightFormatOperator {
-		return ErrUnsupportOperator
+		return ErrUnsupportFormatOperator
 	}
 	return nil
 }
