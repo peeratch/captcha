@@ -3,8 +3,9 @@ package strcon
 import "testing"
 
 func TestNtot_ShouldConvertNumber_To_EnglishNumber_CorrectResult(t *testing.T) {
-	actual := []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "1024", "514"}
+	actual := []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
 	expected := []string{
+		"zero",
 		"one",
 		"two",
 		"three",
@@ -14,8 +15,6 @@ func TestNtot_ShouldConvertNumber_To_EnglishNumber_CorrectResult(t *testing.T) {
 		"seven",
 		"eight",
 		"nine",
-		"one thousand twenty-four",
-		"five hundred fourteen",
 	}
 
 	for index := 0; index < len(actual); index++ {
