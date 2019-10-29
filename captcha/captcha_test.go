@@ -64,8 +64,8 @@ func TestCaptcha_ConvertString_To_MathSymbol(t *testing.T) {
 }
 
 func TestCaptcha_ShouldDoLeft_Operation(t *testing.T) {
-	expected := "one - 1"
-	c := NewCaptcha(1, 1, 1, 1)
+	expected := "1 - one"
+	c := NewCaptcha(0, 1, 1, 1)
 	if err := c.Validate(); err != nil {
 		t.Errorf("captcha process should not got error but got %s", err)
 	}
@@ -77,8 +77,8 @@ func TestCaptcha_ShouldDoLeft_Operation(t *testing.T) {
 }
 
 func TestCaptcha_ShouldDoRight_Operation(t *testing.T) {
-	expected := "1 - one"
-	c := NewCaptcha(0, 1, 1, 1)
+	expected := "one - 1"
+	c := NewCaptcha(1, 1, 1, 1)
 	if err := c.Validate(); err != nil {
 		t.Errorf("captcha process should not got error but got %s", err)
 	}
