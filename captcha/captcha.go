@@ -10,33 +10,33 @@ var (
 	ErrUnsupportMathOperator = errors.New("unsupport math operator")
 	ErrUnsupportOperator     = errors.New("unsupport operator")
 
-	mathOperator = map[string]string{
-		"0": "+",
-		"1": "-",
-		"2": "*",
+	mathOperator = map[int]string{
+		0: "+",
+		1: "-",
+		2: "*",
 	}
 )
 
 const (
-	Format string = "%s %s %s"
+	Format string = "%v %s %v"
 
-	LeftOperator  string = "0"
-	RightOperator string = "1"
+	LeftFormatOperator  = 0
+	RightFormatOperator = 1
 )
 
 type Captcha struct {
-	Right        string
-	Left         string
-	MathOperator string
-	Operator     string
+	Right        int
+	Left         int
+	MathOperator int
+	Format       int
 }
 
-func NewCaptcha(right, left, mathOperator, operator string) *Captcha {
+func NewCaptcha(format, left, mathOperator, right int) *Captcha {
 	return &Captcha{
 		right,
 		left,
 		mathOperator,
-		operator,
+		format,
 	}
 }
 
@@ -44,14 +44,14 @@ func (c *Captcha) Validate() error {
 	if _, ok := mathOperator[c.MathOperator]; !ok {
 		return ErrUnsupportMathOperator
 	}
-	if c.Operator != LeftOperator && c.Operator != RightOperator {
+	if c.Format != LeftFormatOperator && c.Format != RightFormatOperator {
 		return ErrUnsupportOperator
 	}
 	return nil
 }
 
 func (c *Captcha) GenerateCaptcha() string {
-	if c.Operator == LeftOperator {
+	if c.Format == LeftFormatOperator {
 		return c.doLeft()
 	}
 	return c.doRight()
