@@ -1,4 +1,4 @@
-package captcha
+package main
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 
 func TestCaptcha_ShouldDoLeft_Operation(t *testing.T) {
 	expected := "1 - one"
-	acutal := NewCaptcha(0, 1, 1, 1)
+	acutal := g(0, 1, 1, 1)
 	if expected != acutal {
 		t.Errorf("captcha process should return %s but got %s", expected, acutal)
 	}
@@ -14,7 +14,7 @@ func TestCaptcha_ShouldDoLeft_Operation(t *testing.T) {
 
 func TestCaptcha_ShouldDoRight_Operation(t *testing.T) {
 	expected := "one - 1"
-	acutal := NewCaptcha(1, 1, 1, 1)
+	acutal := g(1, 1, 1, 1)
 	if expected != acutal {
 		t.Errorf("captcha process should return %s but got %s", expected, acutal)
 	}
